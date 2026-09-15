@@ -33,8 +33,26 @@ Analyse PWM signal generation by developing a program to switch an LED ON and OF
 15. Run the program on the S32K144 board.
 
 ---
+## Program
+```
+#include "sdk_project_config.h"
+int main(void){
+	CLOCK_DRV_Init(&clockMan1_InitConfig0);
+	PINS_DRV_Init(NUM_OF_CONFIGURED_PINS0, g_pin_mux_InitConfigArr0);
+	PWM_Init(&pwm_pal_1_instance, &pwm_pal_1_configs);
+
+	while(1){
+		PWM_UpdateDuty(&pwm_pal_1_instance,0U,0);
+		OSIF_TimeDelay(1000);
+		PWM_UpdateDuty(&pwm_pal_1_instance,0U,1000);
+		OSIF_TimeDelay(1000);
+	}
+}
+```
+
 ## OUTPUT
 
+<img width="1647" height="1030" alt="image" src="https://github.com/user-attachments/assets/bbda55b1-39c7-4845-82fb-b87041aaa82b" />
 
 
 
